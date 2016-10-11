@@ -1,0 +1,24 @@
+{
+  "name": "wd4-final",
+  "version": "1.0.0",
+  "description": "Final project for webdev4",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Peter Norman peteoa12@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.14.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0"
+  },
+  "dependencies": {
+    "breakpoint-sass": "^2.7.0",
+    "susy": "^2.2.12"
+  }
+}

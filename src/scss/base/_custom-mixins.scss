@@ -1,0 +1,27 @@
+//brand colors
+
+$moog-pink:rgba(255,13,255,0.3);
+$moog-orange:rgba(245,90,21,1);
+
+//Special borders
+@mixin border-bottom {
+	border-bottom:1px solid #808080;
+}
+
+//Hover states
+@mixin hover {
+	background-color:$moog-orange;
+}
+
+//Transitions
+
+@mixin trans {
+	transition: all 0.2s ease-in-out;
+}
+
+@mixin zoom {
+
+	&:hover{
+		transform:scale(1.05);
+	}
+}

@@ -1,0 +1,25 @@
+
+//Local fonts
+@font-face {
+  font-family: 'CaviarDreams';
+  src: url('CaviarDreams.ttf') format('ttf'); 
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: url('OpenSans.ttf') format('ttf'); 
+}
+
+//Font variables
+
+$icon-font-path: './assets/fonts/' !default; //Glyphicons
+
+$primary-font:'CaviarDreams', helvetica, sans-serif; //Caviar Dreams
+
+$secondary-font:'OpenSans', helvetica, sans-serif; //Caviar Dreams
+
+
+
+body {
+	font-family:$primary-font;
+}
