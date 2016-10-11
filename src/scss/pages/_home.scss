@@ -17,12 +17,12 @@ a {
 	@include container ;
 	margin-bottom:10px;
 	text-transform: uppercase;
-	
 
 	p {
 		text-transform:lowercase; 
 		line-height: 1.5em;
 	}
+
 }
 
 .product {
@@ -32,19 +32,8 @@ a {
 	margin-top: 10px;
 	margin-bottom: 10px;
 
-
-	// img {
-	// 	width: 100%;
-	// 	height: 200px;
-	// }
-
-	h3 {
-		color: black;
-	}
-
-	img {
+	figure {
 		width: 100%;
-		height: 150px;
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-position: center;
@@ -54,6 +43,7 @@ a {
 			font-size: 1em;
 			text-align: center;
 			transition:all 0.2s ease-in-out; 
+			color: white;
 
 			@include breakpoint($medium) {
 				font-size: 1em;
@@ -78,18 +68,18 @@ a {
 }
 
 
-.product-one{figure{background-image: url(../img/product-1.jpg);}}
-.product-two{figure{background-image: url(../img/product-2.jpg);}}
-.product-three{figure{background-image: url(../img/product-3.png);}}
-.product-four{figure{background-image: url(../img/product-4.jpg);}}
-.product-five{figure{background-image: url(../img/product-5.jpg);}}
-.product-six{figure{background-image: url(../img/product-6.jpg);}}
-.product-seven{figure{background-image: url(../img/product-7.jpg);}}
-.product-eight{figure{background-image: url(../img/product-8.jpg);}}
-.product-nine{figure{background-image: url(../img/product-9.jpg);}}
-.product-ten{figure{background-image: url(../img/product-10.jpg);}}
-.product-eleven{figure{background-image: url(../img/product-11.jpg);}}
-.product-twelve{figure{background-image: url(../img/product-12.jpg);}}
+.product-one{figure{background-image: url(http://lorempixel.com/400/200/sports);}}
+.product-two{figure{background-image: url(http://lorempixel.com/400/200/city);}}
+.product-three{figure{background-image: url(http://lorempixel.com/400/200/abstract);}}
+.product-four{figure{background-image: url(http://lorempixel.com/400/200/people);}}
+.product-five{figure{background-image: url(http://lorempixel.com/400/200/nature);}}
+.product-six{figure{background-image: url(http://lorempixel.com/400/200/technics);}}
+.product-seven{figure{background-image: url(http://lorempixel.com/400/200/transport);}}
+.product-eight{figure{background-image: url(http://lorempixel.com/400/200/nightlife);}}
+.product-nine{figure{background-image: url(http://lorempixel.com/400/200/food);}}
+.product-ten{figure{background-image: url(http://lorempixel.com/400/200/cats);}}
+.product-eleven{figure{background-image: url(http://lorempixel.com/400/200/fashion);}}
+.product-twelve{figure{background-image: url(http://lorempixel.com/400/200/business);}}
 
 
 
