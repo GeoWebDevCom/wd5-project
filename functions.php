@@ -22,6 +22,19 @@ function getImages() {
     );
 }
 
+class Image{
+    function Image(){
+        $this->title = "Soccer Mom";
+        $this->author = "TidyHouse69";
+        $this->descript = "A soccer mom beating up a soccer dad.";
+        $this->url = "http://lorempixel.com/400/200/sports";
+
+    }
+}
+
+$imageInfo = new Image();
+
+
 function Comment () {
     return getComments();
 }
@@ -37,19 +50,15 @@ function getComments() {
     );
 }
 
+class CommentOne{
+    function CommentOne(){
+        $this->author = "TidyHouse69";
+        $this->comment = "Yay, I love myself when I comment!";
 
-    class Image{
-        function Image(){
-            $this->title = "Soccer Mom";
-            $this->author = "TidyHouse69";
-            $this->descript = "A soccer mom beating up a soccer dad.";
-            $this->url = "http://lorempixel.com/400/200/sports";
-
-        }
     }
+}
 
-    $imageInfo = new Image();
-
+$commentOne = new CommentOne();
 
 //Dynamic dates
 
