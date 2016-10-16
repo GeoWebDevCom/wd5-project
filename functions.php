@@ -35,51 +35,39 @@ class Image{
 $imageInfo = new Image();
 
 
-function Comment () {
-    return getComments();
-}
-
 function getComments() {
     return array(
-        (object) array(),
-        (object) array(),
-        (object) array(),
-        (object) array(),
-        (object) array()
+        (object) array("author" => "LittleMermaid88", "comment" => "Ahhhhhggg!", "timestamp" => "1468269180"),
+        (object) array("author" => "turdFerg44", "comment" => "Dang it, son!", "timestamp" => "1468185720"),
+        (object) array("author" => "protienMan67", "comment" => "Pump it up!", "timestamp" => "1468022100"),
+        (object) array("author" => "DandyWarhol77", "comment" => "How bizaarr!", "timestamp" => "1467805380"),
+        (object) array("author" => "LittleMermaid88", "comment" => "What a princess!", "timestamp" => "1467637601")
 
     );
 }
 
-class CommentOne{
-    function CommentOne(){
-        $this->author = "TidyHouse69";
-        $this->comment = "Yay, I love myself when I comment!";
 
-    }
-}
-
-$commentOne = new CommentOne();
 
 //Dynamic dates
 
 
 
-$date1 = new DateTime();
-$date1->setTimestamp(1468269180);
-
-$date2 = new DateTime();
-$date2->setTimestamp(1468185720);
-
-$date3 = new DateTime();
-$date3->setTimestamp(1468022100);
-
-$date4 = new DateTime();
-$date4->setTimestamp(1467805380);
-
-$date5 = new DateTime();
-$date5->setTimestamp(1467537600);
-
-$date6 = new DateTime();
-$date6->setTimestamp(1467637601);
+//$date1 = new DateTime();
+//$date1->setTimestamp(1468269180);
+//
+//$date2 = new DateTime();
+//$date2->setTimestamp(1468185720);
+//
+//$date3 = new DateTime();
+//$date3->setTimestamp(1468022100);
+//
+//$date4 = new DateTime();
+//$date4->setTimestamp(1467805380);
+//
+//$date5 = new DateTime();
+//$date5->setTimestamp(1467537600);
+//
+//$date6 = new DateTime();
+//$date6->setTimestamp(1467637601);
 
 
