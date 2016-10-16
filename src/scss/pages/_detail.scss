@@ -72,16 +72,16 @@
 	@include full;
 	font-family: $secondary-font;
 
+	span {
+		font-weight: bold;
+	}
+
 	.previous__container {
 		@include container;
 		background-color: #fff;
 		border: 1px solid #ccc;
 		border-radius: 4px;
 		padding:10px;
-
-		.previous__author {
-			font-weight: bold;
-		}
 
 		p {
 			margin: 15px 0;
