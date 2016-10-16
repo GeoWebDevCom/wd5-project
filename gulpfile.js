@@ -20,9 +20,11 @@ var onError = function(err) {
 
 gulp.task('browser-sync', function(){
 	browserSync.init({
-		server: {
-			baseDir: './'
-		}
+		proxy: "http://localhost:8888/wd5-project/",
+		files: ["*.php"]
+		// server: {
+		// 	baseDir: './'
+		// }
 	});
 });
 
