@@ -22,19 +22,6 @@ function getImages() {
     );
 }
 
-class Image{
-    function Image(){
-        $this->title = "Soccer Mom";
-        $this->author = "TidyHouse69";
-        $this->descript = "A soccer mom beating up a soccer dad.";
-        $this->url = "http://lorempixel.com/400/200/sports";
-        $this->timestamp = 1467456240;
-
-    }
-}
-
-$imageInfo = new Image();
-
 
 function getComments() {
     return array(
