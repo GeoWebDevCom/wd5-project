@@ -7,7 +7,7 @@
         <span id="username"><?php echo $image->author ?></span></br></br>
         <span id="date-time">
         <?php
-            displayDate($value->timestamp);
+            displayDate($image->timestamp);
         ?>
     </p>
 </div>
