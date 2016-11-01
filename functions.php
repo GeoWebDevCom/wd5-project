@@ -66,25 +66,27 @@ function deleteImage($id) {
 //-----------------------COMMENT FUNCTIONS-------------------------------------------------------------//
 
 
-function getComments($image_id)
-{
-//    global $db;
-//    $query = $db->prepare( 'SELECT * FROM comments WHERE id = :image_id');
-//    $query->bindValue( ':image_id', $image_id, PDO::PARAM_INT );
-//    $query->execute();
-//    return $query->fetchObject();
+function getComments($image_id) {
+    global $db;
+    $query = $db->prepare( 'SELECT * FROM comment WHERE id = :image_id');
+    $query->bindValue( ':image_id', $image_id, PDO::PARAM_INT );
+    $query->execute();
+    return $query->fetchObject();
 }
 
 function getComment($id) {
     global $db;
-    return '';
+    $query = $db->prepare( 'SELECT * FROM comment WHERE id = :id' );
+    $query->bindValue( ':id', $id, PDO::PARAM_INT );
+    $query->execute();
+    return $query->fetchObject();
 }
 
 function insertComment($comment) {
     global $db;
-    $query = $db->prepare('INSERT INTO comments (user_id, image, text) VALUES (:user_id, :image, :text)');
+    $query = $db->prepare('INSERT INTO comment (user_id, image_id, text) VALUES (:user_id, :image_id, :text)');
     $query->bindValue( ':user_id', $comment->user_id, PDO::PARAM_INT );
-    $query->bindValue( ':image', $comment->image, PDO::PARAM_INT );
+    $query->bindValue( ':image_id', $comment->image_id, PDO::PARAM_INT );
     $query->bindValue( ':text', $comment->text, PDO::PARAM_STR );
     $query->execute();
 }
@@ -123,7 +125,11 @@ function getUser($id) {
 
 function insertUser($user) {
     global $db;
-    return '';
+    $query = $db->prepare('INSERT INTO users (user_id, email, password) VALUES (:user_id, :email, :password)');
+    $query->bindValue( ':user_id', $user->user_id, PDO::PARAM_INT );
+    $query->bindValue( ':email', $user->email, PDO::PARAM_STR );
+    $query->bindValue( ':password', $user->password, PDO::PARAM_STR );
+    $query->execute();
 }
 
 function updateUser($id, $user) {
