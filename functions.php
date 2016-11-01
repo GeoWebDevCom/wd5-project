@@ -68,7 +68,10 @@ function deleteImage($id) {
 
 function getComments($image_id) {
     global $db;
-    return '';
+    $query = $db->prepare( 'SELECT * FROM comments WHERE id = :image_id');
+    $query->bindValue( ':image_id', $image_id, PDO::PARAM_INT );
+    $query->execute();
+    return $query->fetchObject();
 }
 
 function getComment($id) {
@@ -78,7 +81,11 @@ function getComment($id) {
 
 function insertComment($comment) {
     global $db;
-    return '';
+    $query = $db->prepare('INSERT INTO comments (user_id, image, text) VALUES (:user_id, :image, :text)');
+    $query->bindValue( ':user', $comment->user_id, PDO::PARAM_INT );
+    $query->bindValue( ':image', $comment->image, PDO::PARAM_INT );
+    $query->bindValue( ':text', $comment->text, PDO::PARAM_STR );
+    $query->execute();
 }
 
 function updateComment($id, $comment) {
