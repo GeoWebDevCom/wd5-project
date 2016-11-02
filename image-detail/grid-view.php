@@ -1,4 +1,4 @@
-<?php include __DIR__ . '/pagination.php'; ?>
+<?php include __DIR__ . '/../partials/pagination.php'; ?>
 <div id="grid-view" class="wrapper">
     <div class="product-container">
 <!--        --><?php //$images = getImages(); var_dump($images);  ?>

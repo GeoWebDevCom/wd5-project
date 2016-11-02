@@ -1,4 +1,4 @@
-<?php include __DIR__ . '/functions.php';?><!DOCTYPE html>
+<?php include __DIR__ . '/../functions.php';?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -29,7 +29,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.php">TIME SUCK PHOTO <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span></a>
+                    <a class="navbar-brand" href="../index.php">TIME SUCK PHOTO <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -38,7 +38,7 @@
                         <li><a href="#">Upload</a></li>
                         <li><a href="#">Login</a></li>
                         <li><a href="#">Log out</a></li>
-                        <li><a href="#">Register</a></li>
+                        <li><a href="registration.php">Register</a></li>
                         <form class="navbar-form navbar-left">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Search">
