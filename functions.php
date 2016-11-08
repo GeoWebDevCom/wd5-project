@@ -262,56 +262,53 @@ function processRegistrationForm() {
     }
 
     $username =filter_input(INPUT_POST, 'username');
-    //Check if username was entered
-    if (empty($username)) {
-        return('No username entered');
-    }
 
-    //Check if username already exists
-    if (usernameExists($username)){
-        return('username already exists');
+    if ( empty( $username ) ) { // Check if username is empty
+        $errors['username'] = 'Please enter a username!';
+    } elseif ( usernameExists( $username ) ) { // Check if username already exists
+        $errors['username'] = 'Sorry, username already exits!';
     }
-
 
     $email =filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-    //Invalid email address
-    if (empty($email)){
-        return('Invalid Email');
-    }
 
-    //Email already exists
-    if (emailExists($email)){
-        return('email already exists');
+    if ( empty( $email ) ) { // Check if email is empty
+        $errors['email'] = 'Please enter an email address!';
+    } else if ( ! filter_var( $email, FILTER_VALIDATE_EMAIL ) ) { // Check if email address is valid
+        $errors['email'] = 'Please enter a valid email address!';
+    } else if ( emailExists( $email ) ) { // Email already exists
+        $errors['email'] = 'Sorry, email already exists!';
     }
 
 
     $password =filter_input(INPUT_POST, 'password');
-    $verify =filter_input(INPUT_POST, 'password_verification');
+    $verify_password =filter_input(INPUT_POST, 'password_verification');
 
-    //Passwords don't match
-    if ($password !== $verify){
-        return('Passwords do not match');
+    if ( empty( $password ) ) { // Check if password is empty
+        $errors['password'] = 'Please enter a password!';
+    } else if ( $password !== $verify_password ) { // Passwords don't match
+        $errors['password'] = 'Passwords do not match!';
+        $errors['verify_password'] = 'Passwords do not match!';
+    } else if ( strlen( $password ) < 8 ) { // Password too weak
+        $errors['password'] = 'Password is too weak!';
     }
 
-    //Password is too weak
-    if (strlen($password) < 8) {
-        return('Password is to week!');
+
+
+    if ( empty( $errors ) ) {
+
+        // Create the user
+        $user = (object) [
+            'username' => $username,
+            'email'    => $email,
+            'password' => $password,
+        ];
+
+        insertUser( $user );
+
+        // Redirect user to login
+        header( 'Location: ' . APP_URL . '/login.php' );
+
     }
-
-
-
-
-    //Create the user
-    $user = (object)[
-        'username' => $username,
-        'email' => $email,
-        'password' => $password,
-    ];
-//    insertUser($user);
-
-
-    //Redirect user to login
-    header('Location:' . APP_HOST . '/registration.php');
 
     return $errors;
 }

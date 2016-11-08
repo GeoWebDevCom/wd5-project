@@ -12,26 +12,11 @@
                 <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Remember me
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Sign in</button>
-            </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Remember me
+            </label></br>
+            <button type="submit" class="btn btn-default">Sign in</button>
         </div>
     </form>
-    <div class="error-msg">
-        <p>Invalid Username</p>
-    </div>
-
-    <div class="error-msg">
-        <p>Invalid Password</p>
-    </div>
 </div><!-- end row -->

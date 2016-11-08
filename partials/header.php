@@ -46,9 +46,9 @@
                             <button type="submit" class="btn btn-default">Submit</button>
                         </form>
                     </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
+                </div>
+            </div>
         </nav>
     </div>
-</div><!-- end container fluid -->
+</div>
 <div class="container">
