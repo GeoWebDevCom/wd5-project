@@ -1,10 +1,5 @@
 <?php
 
-include __DIR__ . '/config.php';
-
-$db = new PDO( 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASSWORD );
-
-
 //-----------------------IMAGE FUNCTIONS-------------------------------------------------------------//
 
 /**
@@ -66,10 +61,10 @@ function updateImage($id, $image) {
 /**
  * @param $id This is an image ID in the database
  */
-function deleteImage($id) {
+function deleteImage($image_id) {
     global $db;
-    $query = $db->prepare('DELETE FROM image WHERE id=:id');
-    $query->bindValue( ':id', $id, PDO::PARAM_INT );
+    $query = $db->prepare('DELETE FROM image WHERE image_id=:image_id');
+    $query->bindValue( ':image_id', $image_id, PDO::PARAM_INT );
     $query->execute();
 }
 
@@ -82,9 +77,10 @@ function deleteImage($id) {
  */
 function getComments($image_id) {
     global $db;
-    $query = $db->prepare( 'SELECT * FROM comment WHERE id = :image_id');
+    $query = $db->prepare( 'SELECT * FROM comment WHERE image_id = :image_id');
     $query->bindValue( ':image_id', $image_id, PDO::PARAM_INT );
     $query->execute();
+    $query->setFetchMode( PDO::FETCH_OBJ);
     return $query->fetchAll();
 }
 
@@ -168,6 +164,14 @@ function getUser($id) {
     return $query->fetchObject();
 }
 
+function getUserByUsername($username) {
+    global $db;
+    $query = $db->prepare( 'SELECT * FROM users WHERE username = :username' );
+    $query->bindValue( ':username', $username, PDO::PARAM_STR );
+    $query->execute();
+    return $query->fetchObject();
+}
+
 
 /**
  * @param $user array cast as an object to insert user properties into database
@@ -188,9 +192,9 @@ function insertUser($user) {
  */
 function updateUser($id, $user) {
     global $db;
-    $query = $db->prepare('UPDATE users SET user_id=:user_id, email=:email, password=:password WHERE id = :id');
+    $query = $db->prepare('UPDATE users SET username=:username, email=:email, password=:password WHERE id = :id');
     $query->bindValue( ':id', $id, PDO::PARAM_INT );
-    $query->bindValue(':user_id', $user->user_id, PDO::PARAM_INT);
+    $query->bindValue(':username', $user->username, PDO::PARAM_INT);
     $query->bindValue(':email', $user->email, PDO::PARAM_STR);
     $query->bindValue(':password', $user->password, PDO::PARAM_STR);
     $query->execute();
@@ -238,7 +242,6 @@ function emailExists($email) {
 }
 
 
-
 //----------------Timestamp Function--------------------------------------//
 
 /**
@@ -246,10 +249,8 @@ function emailExists($email) {
  */
 function displayDate($uploaded_date) {
     $date = DateTime::createFromFormat('Y-m-d H:i:s', $uploaded_date);
-//    var_dump($uploaded_ate, $date);
     echo $date->format('F d, Y \a\t h:ia');
 }
-
 
 
 //--------------Form Function-----------------------------------------//
@@ -265,8 +266,8 @@ function processRegistrationForm() {
 
     if ( empty( $username ) ) { // Check if username is empty
         $errors['username'] = 'Please enter a username!';
-    } elseif ( usernameExists( $username ) ) { // Check if username already exists
-        $errors['username'] = 'Sorry, username already exits!';
+    } elseif ( usernameExists( $username) ) { // Check if username already exists
+        $errors['username'] = 'Sorry, username already exists!';
     }
 
     $email =filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
@@ -314,6 +315,71 @@ function processRegistrationForm() {
 }
 
 
+//-----------------------Process log in form -----------------------//
+
+function processLogInForm() {
+    $errors = array();
+
+    if (! isset($_POST['login-form'])){
+        return $errors;
+    }
+
+    $username =filter_input(INPUT_POST, 'username');
+
+    if ( empty( $username ) ) { // Check if username is empty
+        $errors['username'] = 'Please enter a username!';
+    } elseif ( usernameExists( $username) == false ) { // Check if username already exists
+        $errors['username'] = 'Sorry, username does not exist!';
+    }
+
+
+    $password =filter_input(INPUT_POST, 'password');
+    $user = getUserByUsername($username);
+
+    if ( empty( $password ) ) { // Check if password is empty
+        $errors['password'] = 'Please enter a password!';
+    }else if(!isset($user, $user->password) || $password != $user->password) { // Incorrect password
+        $errors['password'] = 'Incorrect password!';
+    }
+
+
+    if ( empty( $errors ) ) {
+
+        // Log in the user
+        logInSession($user->id);
+
+
+        // Redirect user to image management
+        header( 'Location: ' . APP_HOST . '/mgmt.php' );
+
+    }
+
+    return $errors;
+}
+
+
+//-----------------------Log in / Log out---------------------------//
+
+function logInSession($id) {
+    $_SESSION['user_id'] = $id;
+}
+
+function logOutSession() {
+    session_unset();
+    session_destroy();
+}
+
+function getCurrentUserId() {
+    $user_id = 0;
+    if(isLoggedIn()) {
+        $user_id =  $_SESSION['user_id'];
+    }
+    return $user_id;
+}
+
+function isLoggedIn() {
+    return isset($_SESSION, $_SESSION['user_id']);
+}
 
 
 

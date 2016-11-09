@@ -1,4 +1,4 @@
-<?php include __DIR__ . '/../functions.php';?><!DOCTYPE html>
+<?php include __DIR__ . '/../includes/bootstrap.php';?><!DOCTYPE html>
 <html lang="en">
 
 <head>
