@@ -22,9 +22,7 @@ gulp.task('browser-sync', function(){
 	browserSync.init({
 		proxy: "http://localhost:8888/wd5-project/",
 		files: ["*.php"]
-		// server: {
-		// 	baseDir: './'
-		// }
+
 	});
 });
 
