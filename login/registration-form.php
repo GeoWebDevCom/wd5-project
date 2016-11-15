@@ -1,17 +1,16 @@
 <div class="registration__form">
     <div class="container">
         <div class="row rowWithFullWidth">
-            <?php $error = processRegistrationForm(); ?>
             <form method="post">
-
-                <div class="form-group<?php echo isset( $registration_errors['email'] ) ? 'error' : '' ?>"
+            <?php foreach ( $registration_errors as $error ) { echo $error . '<br />';} ?>
+                <div class="form-group <?php echo isset( $registration_errors['email'] ) ? 'has-error' : '' ?>">
                     <label for="exampleInputEmail1 form-label">Email</label>
                     <input value="<?php echo filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING) ?>"
                            type="email"
                            class="form-control" id="exampleInputEmail1"
                            placeholder="Email">
                 </div>
-                <div class="form-group <?php echo isset( $registration_errors['username'] ) ? 'error' : '' ?>">
+                <div class="form-group <?php echo isset( $registration_errors['username'] ) ? 'has-error' : '' ?>">
                     <label for="exampleInputPassword1 form-label">Username</label>
                     <input value="<?php echo filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING) ?>"
                            name="username"
@@ -21,7 +20,7 @@
                            placeholder="Ex:kitty6969">
                 </div>
 
-                <div class="form-group <?php echo isset( $registration_errors['password'] ) ? 'error' : '' ?>">
+                <div class="form-group <?php echo isset( $registration_errors['password'] ) ? 'has-error' : '' ?>">
                     <label for="exampleInputPassword1 form-label">Password</label>
                     <input value="<?php echo filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING) ?>"
                            name="password"
@@ -31,7 +30,7 @@
                            placeholder="Password">
                 </div>
 
-                <div class="form-group <?php echo isset( $registration_errors['verify_password'] ) ? 'error' : '' ?>">
+                <div class="form-group <?php echo isset( $registration_errors['verify_password'] ) ? 'has-error' : '' ?>">
                     <label for="exampleInputEmail1 form-label">Re-Enter Password</label>
                     <input
                         value="<?php echo filter_input(INPUT_POST, 'password_verification', FILTER_SANITIZE_STRING) ?>"
