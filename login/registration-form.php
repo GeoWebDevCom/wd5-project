@@ -2,7 +2,13 @@
     <div class="container">
         <div class="row rowWithFullWidth">
             <form method="post">
-            <?php foreach ( $registration_errors as $error ) { echo $error . '<br />';} ?>
+
+            <?php if ( $registration_errors ) { ?>
+              <div class="bg-danger">
+                <?php foreach ( $registration_errors as $error ) { echo $error . '<br />';} ?>
+              </div>
+            <?php } ?>
+
                 <div class="form-group <?php echo isset( $registration_errors['email'] ) ? 'has-error' : '' ?>">
                     <label for="exampleInputEmail1 form-label">Email</label>
                     <input value="<?php echo filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING) ?>"

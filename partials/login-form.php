@@ -1,7 +1,13 @@
 <div class="row">
     <?php $error = processLogInForm(); ?>
     <form class="form-horizontal" method="post">
-        <div class="form-group <?php    ?>">
+
+    <?php if ( $login_errors ) { ?>
+      <div class="bg-danger">
+        <?php foreach ( $login_errors as $error ) { echo $error . '<br />';} ?>
+      </div>
+    <?php } ?>
+        <div class="form-group <?php echo isset( $login_errors['username'] ) ? 'has-error' : '' ?>">
             <label for="inputEmail3"
                    class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
@@ -13,7 +19,7 @@
                        placeholder="Username">
             </div>
         </div>
-        <div class="form-group <?php    ?>">
+        <div class="form-group <?php echo isset( $login_errors['password'] ) ? 'has-error' : '' ?>">
             <label for="inputPassword3"
                    class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
