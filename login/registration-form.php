@@ -4,7 +4,7 @@
             <form method="post">
 
             <?php if ( $registration_errors ) { ?>
-              <div class="bg-danger">
+              <div class="bg-danger red">
                 <?php foreach ( $registration_errors as $error ) { echo $error . '<br />';} ?>
               </div>
             <?php } ?>

@@ -7,6 +7,7 @@
         <?php foreach ( $login_errors as $error ) { echo $error . '<br />';} ?>
       </div>
     <?php } ?>
+    
         <div class="form-group <?php echo isset( $login_errors['username'] ) ? 'has-error' : '' ?>">
             <label for="inputEmail3"
                    class="col-sm-2 control-label"></label>

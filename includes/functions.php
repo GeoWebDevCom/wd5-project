@@ -32,7 +32,7 @@ function getImages($count = 12, $offset = 0) {
 }
 
 /**
- * @param $image array cast as an object to insert image properties into database
+ * @param object $image array cast as an object to insert image properties into database
  */
 function insertImage($image) {
     global $db;
@@ -381,6 +381,57 @@ function isLoggedIn() {
     return isset($_SESSION, $_SESSION['user_id']);
 }
 
+//---------------------Upload form-------------------------------//
 
+function processUploadForm() {
+
+    $errors = array();
+
+    if (! isset($_FILES['image'])){
+        return $errors;
+    }
+
+
+    //Image title is empty
+
+    if(empty($_POST['title'])){
+        $errors['title'] = 'Please give the image a title.';
+    }
+
+    //No file provided
+    //Invalid file type
+    //Upload failed
+    if(4 === $_FILES['image']['error']) {
+        $errors['image'] = 'No files chosen. Please choose a file.';
+    }else if('image' !== explode('/', $_FILES['image']['type'])[0]){
+        $errors['image'] = 'Invalid file type';
+    }else if($_FILES['image']['error'] !== 0){
+        $errors['image'] = 'Upload failed.';
+    }
+
+    if(empty($errors)){
+        $filepath = __DIR__ . '/../assets/img/' . $_FILES['image']['name'];
+        $upload_success = move_uploaded_file($_FILES['image']['tmp_name'], $filepath);
+        if ($upload_success == false) {
+            $errors['image'] = 'Upload failed.';
+        }
+    }
+
+    if (empty($errors)) {
+
+        insertImage((object) array(
+            'url' => APP_HOST . '/assets/img/' . $_FILES['image']['name'] ,
+            'title' => filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING) ,
+            'description' => filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING) ,
+            'user_id' =>  getCurrentUserId()
+
+        ));
+
+        header( 'Location: ' . APP_HOST . '/mgmt.php' );
+    }
+
+
+    return $errors;
+}
 
 

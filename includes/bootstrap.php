@@ -11,3 +11,4 @@ $db = new PDO( 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASSW
 
 $registration_errors = processRegistrationForm();
 $login_errors = processLogInForm();
+$upload_errors = processUploadForm();
