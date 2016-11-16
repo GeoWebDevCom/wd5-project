@@ -2,7 +2,7 @@
 <div id="grid-view" class="wrapper">
     <div class="product-container">
 <!--        --><?php //$images = getImages(); var_dump($images);  ?>
-        <?php foreach(getImages() as $image) { ?>
+        <?php foreach(getImages(12, getCurrentOffset()) as $image) { ?>
             <?php include __DIR__ . '/grid-item-view.php';?>
        <?php } ?>
     </div>

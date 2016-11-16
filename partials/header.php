@@ -29,7 +29,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="../index.php">TIME SUCK PHOTO <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span></a>
+                    <a class="navbar-brand" href="index.php">TIME SUCK PHOTO <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->

@@ -31,6 +31,26 @@ function getImages($count = 12, $offset = 0) {
     return $query->fetchAll();
 }
 
+function getTotalImageCount() {
+    global $db;
+    $query = $db->prepare( 'SELECT COUNT(*) FROM image' );
+    $query->execute();
+
+    return (integer) $query->fetch()[0];
+}
+
+function getTotalPageCount($per_page = 12) {
+    $total = getTotalImageCount();
+
+    return (integer) ceil(getTotalImageCount() / $per_page);
+}
+
+function getCurrentOffset(){
+    $page_number = max(filter_input(INPUT_GET, 'page'), 1);
+
+    return ($page_number - 1) * 12;
+}
+
 /**
  * @param object $image array cast as an object to insert image properties into database
  */
