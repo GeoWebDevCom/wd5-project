@@ -13,6 +13,7 @@
                     <label for="exampleInputEmail1 form-label">Email</label>
                     <input value="<?php echo filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING) ?>"
                            type="email"
+                           name="email"
                            class="form-control" id="exampleInputEmail1"
                            placeholder="Email">
                 </div>
