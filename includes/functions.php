@@ -184,6 +184,9 @@ function getUser($id) {
     return $query->fetchObject();
 }
 
+/**
+ * @param $username returns the username from the database
+ */
 function getUserByUsername($username) {
     global $db;
     $query = $db->prepare( 'SELECT * FROM users WHERE username = :username' );
@@ -275,6 +278,9 @@ function displayDate($uploaded_date) {
 
 //--------------Form Function-----------------------------------------//
 
+/**
+ * @return $errors is an empty template literal array to display different error possibilities.
+ */
 function processRegistrationForm() {
     $errors = array();
 
@@ -337,6 +343,9 @@ function processRegistrationForm() {
 
 //-----------------------Process log in form -----------------------//
 
+/**
+ * @return $errors is an empty template literal array to display different error possibilities.
+ */
 function processLogInForm() {
     $errors = array();
 
@@ -380,15 +389,22 @@ function processLogInForm() {
 
 //-----------------------Log in / Log out---------------------------//
 
+/**
+ * @param $id a user id in the database
+ */
 function logInSession($id) {
     $_SESSION['user_id'] = $id;
 }
+
 
 function logOutSession() {
     session_unset();
     session_destroy();
 }
 
+/**
+ * @return int
+ */
 function getCurrentUserId() {
     $user_id = 0;
     if(isLoggedIn()) {
@@ -397,12 +413,19 @@ function getCurrentUserId() {
     return $user_id;
 }
 
+
+/**
+ * @return bool
+ */
 function isLoggedIn() {
     return isset($_SESSION, $_SESSION['user_id']);
 }
 
 //---------------------Upload form-------------------------------//
 
+/**
+ * @return array
+ */
 function processUploadForm() {
 
     $errors = array();
