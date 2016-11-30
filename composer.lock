@@ -1,0 +1,53 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "ae89adfbc6ccfa82d82270fc92aa59a3",
+    "content-hash": "f55dd9610509e71e768417a1cfe2fc19",
+    "packages": [
+        {
+            "name": "wpscholar/url",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wpscholar/url.git",
+                "reference": "2aade53c08d75159eb5115eb00c9f47f77159faf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wpscholar/url/zipball/2aade53c08d75159eb5115eb00c9f47f77159faf",
+                "reference": "2aade53c08d75159eb5115eb00c9f47f77159faf",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "wpscholar\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Micah Wood",
+                    "email": "micah@wpscholar.com",
+                    "homepage": "http://wpscholar.com"
+                }
+            ],
+            "description": "A PHP class for parsing and manipulating URLs.",
+            "time": "2016-05-11 21:27:19"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

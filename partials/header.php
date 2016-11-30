@@ -35,10 +35,14 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Upload</a></li>
-                        <li><a href="#">Login</a></li>
-                        <li><a href="#">Log out</a></li>
+                        <?php if (isLoggedIn()) { ?>
+                        <li><a href="upload.php">Upload</a></li>
+                        <li><a href="<?php echo APP_HOST?>/?logout=true">Log out</a></li>
+                        <?php }else { ?>
+                        <li><a href="login.php">Login</a></li>
                         <li><a href="registration.php">Register</a></li>
+                        <?php } ?>
+
                         <form class="navbar-form navbar-left">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Search">

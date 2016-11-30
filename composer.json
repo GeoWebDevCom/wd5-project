@@ -1,0 +1,14 @@
+{
+    "name": "peteoa12/webdev5",
+    "description": "imagur clone project",
+    "type": "project",
+    "authors": [
+        {
+            "name": "peteoa12",
+            "email": "peter.norman@atlanta.creativecircus.edu"
+        }
+    ],
+    "require": {
+        "wpscholar/url": "^1.1"
+    }
+}

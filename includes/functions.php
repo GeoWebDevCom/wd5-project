@@ -31,6 +31,17 @@ function getImages($count = 12, $offset = 0) {
     return $query->fetchAll();
 }
 
+function getImagesByUser($id, $count = 12, $offset = 0) {
+    global $db;
+    $query = $db->prepare( 'SELECT * FROM image WHERE :id,:offset,:count' );
+    $query->bindValue( ':id', $id, PDO::PARAM_INT );
+    $query->bindValue( ':count', $count, PDO::PARAM_INT );
+    $query->bindValue( ':offset', $offset, PDO::PARAM_INT );
+    $query->execute();
+    $query->setFetchMode( PDO::FETCH_OBJ);
+    return $query->fetchAll();
+}
+
 function getTotalImageCount() {
     global $db;
     $query = $db->prepare( 'SELECT COUNT(*) FROM image' );
