@@ -94,7 +94,7 @@ function updateImage($id, $image) {
  */
 function deleteImage($image_id) {
     global $db;
-    $query = $db->prepare('DELETE FROM image WHERE image_id=:image_id');
+    $query = $db->prepare('DELETE FROM image WHERE id=:image_id');
     $query->bindValue( ':image_id', intval($image_id), PDO::PARAM_INT );
     $query->execute();
 }
