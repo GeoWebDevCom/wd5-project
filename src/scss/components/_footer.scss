@@ -3,6 +3,7 @@
   font-family: 'Source Code Pro', monospace;
   font-weight:300;
   font-size: 0.75em;
+
   @include full;
 	
 	div {
@@ -24,5 +25,9 @@
 	span {
 		margin-top: 5px;
 	}
+}
+
+.page-wrap {
+	min-height: 100vh;
 }
 

@@ -1,4 +1,5 @@
 </div>
+</div>
 <footer class="footer">
     <div class="footer-container">
         <p>Copyrite &copy; Time Suck 2014 - <?php echo date('Y')?></p>

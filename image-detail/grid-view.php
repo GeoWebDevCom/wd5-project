@@ -7,4 +7,3 @@
        <?php } ?>
     </div>
 </div><!-- end susy wrapper -->
-<hr>

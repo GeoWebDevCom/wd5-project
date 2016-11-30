@@ -33,7 +33,7 @@ function getImages($count = 12, $offset = 0) {
 
 function getImagesByUser($id, $count = 12, $offset = 0) {
     global $db;
-    $query = $db->prepare( 'SELECT * FROM image WHERE :id,:offset,:count' );
+    $query = $db->prepare( 'SELECT * FROM image WHERE user_id = :id LIMIT :offset, :count' );
     $query->bindValue( ':id', $id, PDO::PARAM_INT );
     $query->bindValue( ':count', $count, PDO::PARAM_INT );
     $query->bindValue( ':offset', $offset, PDO::PARAM_INT );
@@ -95,7 +95,7 @@ function updateImage($id, $image) {
 function deleteImage($image_id) {
     global $db;
     $query = $db->prepare('DELETE FROM image WHERE image_id=:image_id');
-    $query->bindValue( ':image_id', $image_id, PDO::PARAM_INT );
+    $query->bindValue( ':image_id', intval($image_id), PDO::PARAM_INT );
     $query->execute();
 }
 
@@ -488,4 +488,11 @@ function processUploadForm() {
     return $errors;
 }
 
+
+
+function processDelete() {
+    if(isset($_POST['delete_image'])){
+        deleteImage($_POST['image_id']);
+    }
+}
 

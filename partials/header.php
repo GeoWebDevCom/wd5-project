@@ -17,6 +17,7 @@
 </head>
 
 <body>
+<div class="page-wrap">
 <div class="container-fluid">
     <div class="row">
         <nav class="navbar navbar-inverse">
@@ -38,6 +39,7 @@
                         <?php if (isLoggedIn()) { ?>
                         <li><a href="upload.php">Upload</a></li>
                         <li><a href="<?php echo APP_HOST?>/?logout=true">Log out</a></li>
+                            <li><a href="mgmt.php">My Images</a></li>
                         <?php }else { ?>
                         <li><a href="login.php">Login</a></li>
                         <li><a href="registration.php">Register</a></li>
