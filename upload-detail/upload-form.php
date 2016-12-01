@@ -45,7 +45,8 @@
 
 
                 <button type="submit"
-                        class="btn btn-default">
+                        class="btn btn-default"
+                        name="upload_image">
                     Submit</button>
             </form>
 

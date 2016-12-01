@@ -31,12 +31,10 @@ function getImages($count = 12, $offset = 0) {
     return $query->fetchAll();
 }
 
-function getImagesByUser($id, $count = 12, $offset = 0) {
+function getImagesByUser($id) {
     global $db;
-    $query = $db->prepare( 'SELECT * FROM image WHERE user_id = :id LIMIT :offset, :count' );
+    $query = $db->prepare( 'SELECT * FROM image WHERE user_id = :id' );
     $query->bindValue( ':id', $id, PDO::PARAM_INT );
-    $query->bindValue( ':count', $count, PDO::PARAM_INT );
-    $query->bindValue( ':offset', $offset, PDO::PARAM_INT );
     $query->execute();
     $query->setFetchMode( PDO::FETCH_OBJ);
     return $query->fetchAll();
@@ -128,7 +126,7 @@ function getComment($id) {
 }
 
 /**
- * @param $comment array cast as an object to insert comment properties into database
+ * @param object $comment array cast as an object to insert comment properties into database
  */
 function insertComment($comment) {
     global $db;
@@ -140,7 +138,7 @@ function insertComment($comment) {
 }
 
 /**
- * @param $id This is an image ID in the database
+ * @param int $id This is an image ID in the database
  * @param $comment array cast as an object to insert comment properties into database
  */
 function updateComment($id, $comment) {
@@ -344,7 +342,7 @@ function processRegistrationForm() {
         insertUser( $user );
 
         // Redirect user to login
-        header( 'Location: ' . APP_URL . '/login.php' );
+        header( 'Location: ' . APP_HOST . '/login.php' );
 
     }
 
@@ -439,13 +437,13 @@ function isLoggedIn() {
  */
 function processUploadForm() {
 
+
     $errors = array();
 
-    if (! isset($_FILES['image'])){
+    if (! isset($_POST['upload_image'])){
         return $errors;
     }
-
-
+    
     //Image title is empty
 
     if(empty($_POST['title'])){
@@ -455,6 +453,8 @@ function processUploadForm() {
     //No file provided
     //Invalid file type
     //Upload failed
+
+
     if(4 === $_FILES['image']['error']) {
         $errors['image'] = 'No files chosen. Please choose a file.';
     }else if('image' !== explode('/', $_FILES['image']['type'])[0]){
@@ -493,6 +493,12 @@ function processUploadForm() {
 function processDelete() {
     if(isset($_POST['delete_image'])){
         deleteImage($_POST['image_id']);
+    }
+}
+
+function processComment() {
+    if(isset($_POST['insert_comment'])){
+        insertComment((object)$_POST);
     }
 }
 

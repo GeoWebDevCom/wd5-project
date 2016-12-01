@@ -17,3 +17,4 @@ $registration_errors = processRegistrationForm();
 $login_errors = processLogInForm();
 $upload_errors = processUploadForm();
 processDelete();
+processComment();
