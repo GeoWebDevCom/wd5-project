@@ -41,16 +41,16 @@
                         <li><a href="<?php echo APP_HOST?>/?logout=true">Log out</a></li>
                             <li><a href="mgmt.php">My Images</a></li>
                         <?php }else { ?>
-                        <li><a href="login.php">Login</a></li>
                         <li><a href="registration.php">Register</a></li>
+                            <li><a href="login.php">Login</a></li>
                         <?php } ?>
 
-                        <form class="navbar-form navbar-left">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search">
-                            </div>
-                            <button type="submit" class="btn btn-default">Submit</button>
-                        </form>
+<!--                        <form class="navbar-form navbar-left">-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" class="form-control" placeholder="Search">-->
+<!--                            </div>-->
+<!--                            <button type="submit" class="btn btn-default">Submit</button>-->
+<!--                        </form>-->
                     </ul>
                 </div>
             </div>

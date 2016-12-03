@@ -443,7 +443,7 @@ function processUploadForm() {
     if (! isset($_POST['upload_image'])){
         return $errors;
     }
-    
+
     //Image title is empty
 
     if(empty($_POST['title'])){
