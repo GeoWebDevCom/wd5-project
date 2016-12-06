@@ -11,6 +11,6 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="assets/js/bootstrap.min.js"></script>
 <!--  <script src="assets/js/dropdown.js"></script> -->
-<script type="../assets/js/main.js"></script>
+<script type="text/javascript" src="assets/js/main.js"></script>
 </body>
 </html>

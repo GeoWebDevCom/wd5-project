@@ -4,7 +4,8 @@
             <form method="post">
 
             <?php if ( $registration_errors ) { ?>
-              <div class="bg-danger red">
+              <div class="red">
+                <div class="closeBorder">X</div>
                 <?php foreach ( $registration_errors as $error ) { echo $error . '<br />';} ?>
               </div>
             <?php } ?>
@@ -52,9 +53,9 @@
                                type="checkbox">Not a robot
                     </label>
                 </div>
-                <button name="registration-form"
+                <input name="registration-form"
                         type="submit"
-                        class="btn btn-default">Submit</button>
+                        />
             </form>
         </div>
     </div>

@@ -3,7 +3,8 @@
     <form class="form-horizontal" method="post">
 
     <?php if ( $login_errors ) { ?>
-      <div class="bg-danger">
+      <div class="red">
+          <div class="closeBorder">X</div>
         <?php foreach ( $login_errors as $error ) { echo $error . '<br />';} ?>
       </div>
     <?php } ?>
