@@ -1,5 +1,5 @@
-<div class="registration__form">
-    <div class="container">
+<div class="form_wrapper">
+    <!-- <div class="container"> -->
         <div class="row rowWithFullWidth">
             <form method="post">
 
@@ -53,10 +53,10 @@
                                type="checkbox">Not a robot
                     </label>
                 </div>
-                <input name="registration-form"
+                <input class="form_submit" name="registration-form"
                         type="submit"
                         />
             </form>
         </div>
-    </div>
+    <!-- </div> -->
 </div>

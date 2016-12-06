@@ -23,27 +23,24 @@ textarea {
 	color:$white;
 }
 
-.input {
+.form_submit {
 	display: inline-block;
 	padding: 15px;
-	margin-right: 5px;
-	height: 50px;
-	min-width: 100px;
-	background: $button-bg-color;
+	background: #0F373B;
 	border: none;
-	outline: none;
-	color: white;
+	outline: 0;
+	color: #fff;
 	font-family: inherit;
-	font-weight: 400;
-	font-size: 20px;
-	border-radius: 3px;
-	box-shadow: 0 5px 0px darken($button-bg-color,0%);
-	border-bottom: 2px solid darken($button-bg-color,3%);
+	font-weight: 300;
+	font-size: 1em;
+	border-radius: 8px;
+	box-shadow: 0 5px 0 #59ad9f;
+	border-bottom: 2px solid #0c2c2f;
 
 	&:hover{
-		background: darken($button-bg-color,5%);
-		box-shadow: 0 4px 1px darken($button-bg-color,5%);
-		border-bottom: 2px solid darken($button-bg-color,8%);
+		background: darken($green,5%);
+		box-shadow: 0 4px 1px darken($light-green,5%);
+		border-bottom: 2px solid darken($light-green,8%);
 		transition: all 0.1s ease-in;
 	}
 
@@ -60,3 +57,31 @@ textarea {
 	top: 10px;
 	font-size: 19px;
 }
+
+.registration__form {
+	margin-top: 40px;
+}
+
+.form_wrapper {
+	width: span(10);
+	margin-left: span(1);
+	margin-right: span(1);
+	margin-top: 40px;
+
+	@include breakpoint($medium) {
+		width: span(8);
+		margin-left: span(2);
+		margin-right: span(2);
+	}
+
+	@include breakpoint($large) {
+		width: span(6);
+		margin-left: span(3);
+		margin-right: span(3);
+	}
+}
+
+
+
+
+

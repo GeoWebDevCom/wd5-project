@@ -1,6 +1,7 @@
 <div class="row">
+<div class="form_wrapper">
     <?php $error = processLogInForm(); ?>
-    <form class="form-horizontal" method="post">
+    <form class="form-group" class="form-horizontal" method="post">
 
     <?php if ( $login_errors ) { ?>
       <div class="red">
@@ -11,8 +12,8 @@
     
         <div class="form-group <?php echo isset( $login_errors['username'] ) ? 'has-error' : '' ?>">
             <label for="inputEmail3"
-                   class="col-sm-2 control-label"></label>
-            <div class="col-sm-10">
+                   class="control-label">Username</label>
+            <div>
                 <input type="text"
                        name="username"
                        value="<?php echo filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING) ?>"
@@ -23,8 +24,8 @@
         </div>
         <div class="form-group <?php echo isset( $login_errors['password'] ) ? 'has-error' : '' ?>">
             <label for="inputPassword3"
-                   class="col-sm-2 control-label"></label>
-            <div class="col-sm-10">
+                   class="control-label">Password</label>
+            <div>
                 <input type="password"
                        name="password"
                        value="<?php echo filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING)?>"
@@ -37,9 +38,10 @@
             <label>
                 <input type="checkbox"> Remember me
             </label></br>
-            <button type="submit"
+            <button class="form_submit" type="submit"
                     name="login-form"
-                    class="btn btn-default">Sign in</button>
+                    >Sign in</button>
         </div>
     </form>
 </div><!-- end row -->
+</div>
