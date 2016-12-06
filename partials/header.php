@@ -14,9 +14,11 @@
     <!-- Source Code Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400" rel="stylesheet">
 
+
 </head>
 
 <body>
+
 <div class="page-wrap">
 <div class="container-fluid">
     <div class="row">
@@ -30,27 +32,21 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.php">TIME SUCK PHOTO <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span></a>
+                    <a id="brand" class="navbar-brand" href="index.php">Timeless Photo <span class="glyphicon glyphicon-hourglass logo" aria-hidden="true"></span></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <?php if (isLoggedIn()) { ?>
-                        <li><a href="upload.php">Upload</a></li>
-                        <li><a href="<?php echo APP_HOST?>/?logout=true">Log out</a></li>
+                            <li><a href="upload.php">Upload</a></li>
                             <li><a href="mgmt.php">My Images</a></li>
+                            <li><a href="<?php echo APP_HOST?>/?logout=true">Log out</a></li>
                         <?php }else { ?>
-                        <li><a href="registration.php">Register</a></li>
+                            <li><a href="registration.php">Register</a></li>
                             <li><a href="login.php">Login</a></li>
                         <?php } ?>
 
-<!--                        <form class="navbar-form navbar-left">-->
-<!--                            <div class="form-group">-->
-<!--                                <input type="text" class="form-control" placeholder="Search">-->
-<!--                            </div>-->
-<!--                            <button type="submit" class="btn btn-default">Submit</button>-->
-<!--                        </form>-->
                     </ul>
                 </div>
             </div>

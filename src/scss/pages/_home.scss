@@ -1,4 +1,7 @@
-
+body {
+	background-color: $white;
+	color: $black;
+}
 
 a {
 	text-decoration: none;
@@ -15,7 +18,7 @@ a {
 .product-container {
 	// border:1px solid red;
 	@include container ;
-	margin-bottom:10px;
+	margin:15px 0;
 	text-transform: uppercase;
 
 	p {
@@ -45,6 +48,7 @@ a {
 			text-align: center;
 			transition:all 0.2s ease-in-out; 
 			color: white;
+			background-color: rgba(0,0,0,0.3);
 
 			@include breakpoint($medium) {
 				font-size: 1em;

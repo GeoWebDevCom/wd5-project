@@ -16,9 +16,9 @@
 	// margin-right: span(1);
 
 	@include breakpoint($medium) {
-		// @include span(4 of 8);
-		// margin-left: span(2);
-		// margin-right: span(2);
+		 @include span(8);
+		 margin-left: span(2);
+		 margin-right: span(2);
 	}
 
 	@include breakpoint($large) {

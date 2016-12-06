@@ -2,7 +2,7 @@
 </div>
 <footer class="footer">
     <div class="footer-container">
-        <p>Copyrite &copy; Time Suck 2014 - <?php echo date('Y')?></p>
+        <p>Copyrite &copy; Timeless Photo 2014 - <?php echo date('Y')?></p>
     </div>
 </footer>
 
