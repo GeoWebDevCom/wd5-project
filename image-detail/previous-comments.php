@@ -9,4 +9,3 @@
     <?php } ?>
 </div>
 
-<?php //echo date('F d, Y') . ' at ' . date('h:ia ', strtotime($date1))?>

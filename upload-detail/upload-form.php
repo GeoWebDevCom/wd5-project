@@ -1,12 +1,12 @@
-<div class="upload__form">
-    <div class="container">
+<div class="form_wrapper">
         <div class="row rowWithFullWidth">
             
 
             <form enctype="multipart/form-data" method="post">
 
                 <?php if ( $upload_errors ) { ?>
-                    <div class="bg-danger red">
+                    <div class="red">
+                        <div class="closeBorder">X</div>
                         <?php foreach ( $upload_errors as $error ) { echo $error . '<br />';} ?>
                     </div>
                 <?php } ?>
@@ -29,7 +29,7 @@
                               class="form-control"
                               name="description"
                               placeholder="Description"
-                              ><?php echo filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING) ?></textarea>
+                              ><?php echo filter_input(INPUT_POST, 'description', FILTER_SANITIZE_SPECIAL_CHARS) ?></textarea>
                 </div>
 
 
@@ -45,12 +45,11 @@
 
 
                 <button type="submit"
-                        class="btn btn-default"
+                        class="form_submit"
                         name="upload_image">
                     Submit</button>
             </form>
 
             
         </div>
-    </div>
 </div>

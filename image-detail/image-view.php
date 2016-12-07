@@ -13,3 +13,6 @@
     </p>
 </div>
 
+
+<a href="?image=<?php echo getPreviousImage($image->id) ?>">&laquo; Previous</a>
+<a href="?image=<?php echo getNextImage($image->id)?>">Next &raquo;</a>

@@ -17,6 +17,64 @@ function getImage ($id) {
     return $query->fetchObject();
 }
 
+function getFirstImageID() {
+    global $db;
+    $query = $db->prepare( 'SELECT id FROM image LIMIT 1' );
+    $query->execute();
+    return $query->fetchColumn();
+}
+
+function getLastImageID() {
+    global $db;
+    $query = $db->prepare( 'SELECT * FROM image ORDER BY id DESC LIMIT 1' );
+    $query->execute();
+    return $query->fetchColumn();
+}
+
+function getPreviousImage( $id ) {
+
+    $previous_id = $id;
+
+    $first_id = getFirstImageID();
+
+    $image = false;
+
+    if ($id == $first_id){
+        return $previous_id = getLastImageID();
+    }
+
+    while ($image === false && $previous_id > $first_id ) {
+
+        $previous_id --;
+        $image = getImage( $previous_id );
+    }
+
+    return $previous_id;
+}
+
+
+function getNextImage( $id ) {
+    $next_id = $id;
+
+    $last_id = getLastImageID();
+
+    $image = false;
+
+    if ($id == $last_id){
+        return getFirstImageID();
+    }
+
+    while ($image === false && $next_id < $last_id ) {
+
+        $next_id ++;
+        $image = getImage( $next_id );
+
+    }
+
+    return $next_id;
+
+}
+
 /**
  * @param int $count - The number of object in the array
  * @param int $offset - The ID number at which the array starts
@@ -68,7 +126,7 @@ function insertImage($image) {
     $query = $db->prepare('INSERT INTO image (url, title, description, user_id) VALUES (:url, :title, :description, :user_id)');
     $query->bindValue( ':url', $image->url, PDO::PARAM_STR );
     $query->bindValue( ':title', $image->title, PDO::PARAM_STR );
-    $query->bindValue( ':description', $image->description, PDO::PARAM_STR );
+    $query->bindValue( ':description', filter_var($image->description, FILTER_SANITIZE_SPECIAL_CHARS), PDO::PARAM_STR );
     $query->bindValue( ':user_id', $image->user_id, PDO::PARAM_INT );
     $query->execute();
 }
@@ -83,7 +141,7 @@ function updateImage($id, $image) {
     $query->bindValue( ':id', $id, PDO::PARAM_INT );
     $query->bindValue(':url', $image->url, PDO::PARAM_STR);
     $query->bindValue(':title', $image->title, PDO::PARAM_STR);
-    $query->bindValue(':description', $image->description, PDO::PARAM_STR);
+    $query->bindValue( ':description', filter_var($image->description, FILTER_SANITIZE_SPECIAL_CHARS), PDO::PARAM_STR );
     $query->execute();
 }
 
@@ -133,7 +191,7 @@ function insertComment($comment) {
     $query = $db->prepare('INSERT INTO comment (user_id, image_id, text) VALUES (:user_id, :image_id, :text)');
     $query->bindValue( ':user_id', $comment->user_id, PDO::PARAM_INT );
     $query->bindValue( ':image_id', $comment->image_id, PDO::PARAM_INT );
-    $query->bindValue( ':text', $comment->text, PDO::PARAM_STR );
+    $query->bindValue( ':text', filter_var($comment->text, FILTER_SANITIZE_SPECIAL_CHARS),PDO::PARAM_STR );
     $query->execute();
 }
 
@@ -147,7 +205,7 @@ function updateComment($id, $comment) {
     $query->bindValue( ':id', $id, PDO::PARAM_INT );
     $query->bindValue(':user_id', $comment->user_id, PDO::PARAM_INT);
     $query->bindValue(':image_id', $comment->image_id, PDO::PARAM_INT);
-    $query->bindValue(':text', $comment->text, PDO::PARAM_STR);
+    $query->bindValue( ':text', filter_var($comment->text, FILTER_SANITIZE_SPECIAL_CHARS),PDO::PARAM_STR );
     $query->execute();
 }
 
@@ -199,7 +257,7 @@ function getUser($id) {
 function getUserByUsername($username) {
     global $db;
     $query = $db->prepare( 'SELECT * FROM users WHERE username = :username' );
-    $query->bindValue( ':username', $username, PDO::PARAM_STR );
+    $query->bindValue( ':username', filter_var($username, FILTER_SANITIZE_SPECIAL_CHARS), PDO::PARAM_STR );
     $query->execute();
     return $query->fetchObject();
 }
@@ -213,7 +271,7 @@ function insertUser($user) {
     $query = $db->prepare('INSERT INTO users (username, email, password) VALUES (:username, :email, :password)');
     $query->bindValue( ':username', $user->username, PDO::PARAM_INT );
     $query->bindValue( ':email', $user->email, PDO::PARAM_STR );
-    $query->bindValue( ':password', $user->password, PDO::PARAM_STR );
+    $query->bindValue( ':password', filter_var($user->password, FILTER_SANITIZE_SPECIAL_CHARS), PDO::PARAM_STR );
     $query->execute();
 }
 
@@ -228,7 +286,7 @@ function updateUser($id, $user) {
     $query->bindValue( ':id', $id, PDO::PARAM_INT );
     $query->bindValue(':username', $user->username, PDO::PARAM_INT);
     $query->bindValue(':email', $user->email, PDO::PARAM_STR);
-    $query->bindValue(':password', $user->password, PDO::PARAM_STR);
+    $query->bindValue(':password', filter_var($user->password, FILTER_SANITIZE_SPECIAL_CHARS), PDO::PARAM_STR);
     $query->execute();
 }
 
@@ -489,13 +547,36 @@ function processUploadForm() {
 }
 
 
-
+/**
+ * This function deletes the image and comments associated with the image.
+ */
 function processDelete() {
     if(isset($_POST['delete_image'])){
-        deleteImage($_POST['image_id']);
+
+        $image_id = $_POST['image_id'];
+
+        $image = getImage($image_id);
+
+
+        if(false != $image){
+
+            $filepath = APP_ROOT . '/assets/img/' . basename($image->url);
+            unlink($filepath);
+
+            foreach (getComments($image_id) as $comment) {
+                deleteComment($comment->id);
+            }
+
+            deleteImage($image_id);
+        }
+
     }
 }
 
+
+/**
+ * This function processes the insertComment function.
+ */
 function processComment() {
     if(isset($_POST['insert_comment'])){
         insertComment((object)$_POST);
